@@ -4,7 +4,7 @@
   font-size: 0.85rem;
 
   @media (--screen-pc) {
-    top: 1rem;
+    top: 0;
     position: sticky;
     margin-top: -1rem;
     padding: 1rem 0 1rem 1rem;
@@ -14,8 +14,16 @@
 
 .footer__nav {
   display: none;
+}
 
-  @media (--screen-pc) {
+@media (--screen-pc) {
+  .footer--open {
+    height: 100vh;
+
+    grid-template-rows: auto 1fr auto auto;
+  }
+
+  .footer--open .footer__nav {
     display: block;
   }
 }

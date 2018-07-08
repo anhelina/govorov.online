@@ -1,4 +1,4 @@
-<footer class="footer">
+<footer class="footer" id="footer">
   <div class="footer__nav">
     {% include navigation/navigation.html vertical=true %}
   </div>
@@ -17,3 +17,17 @@
     document.getElementById('footer-current-year').textContent = (new Date()).getFullYear();
   </script>
 </footer>
+
+<script>
+  const container = document.getElementById('footer');
+
+  window.addEventListener('scroll', () => {
+    console.log(container.getBoundingClientRect().y);
+
+    if (container.getBoundingClientRect().y === 0) {
+      container.classList.add('footer--open');
+    } else {
+      container.classList.remove('footer--open');
+    }
+  });
+</script>
