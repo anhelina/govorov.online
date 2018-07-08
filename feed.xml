@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ru"><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="https://govorov.online/feed.xml" rel="self" type="application/atom+xml" /><link href="https://govorov.online/" rel="alternate" type="text/html" hreflang="ru" /><updated>2018-07-08T07:39:11+00:00</updated><id>https://govorov.online/</id><title type="html">Николай Говоров</title><subtitle>Живу в Питере, работаю фронтенд-разработчиком для ВКонтакте</subtitle><author><name>Николай Говоров</name></author><entry><title type="html">Телефонный номер здорового верстальщика</title><link href="https://govorov.online/notes/links.html" rel="alternate" type="text/html" title="Телефонный номер здорового верстальщика" /><published>2017-12-10T00:00:00+00:00</published><updated>2017-12-10T00:00:00+00:00</updated><id>https://govorov.online/notes/links</id><content type="html" xml:base="https://govorov.online/notes/links.html">&lt;p&gt;Зашёл я тут давече на очередной сайт госструктур, и понадобилось мне позвонить по указанному там номеру. Номер ссылочкой, всё по феншую. Как любой &lt;em&gt;здоровый верстальщик&lt;/em&gt; я ожидал что ссылку можно кликать, что собственно тут же и сделал. Проблема в том, что мои ожидания не оправдались и я увидел сообщение о 404 ошибке.&lt;/p&gt;
+
+&lt;p&gt;Начинаем разбираться. Садимся за компьютер, открываем DevTools и видим следующую картину:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;a href=&quot;+1 (234) 567-89-10&quot; target=&quot;_blank&quot;&amp;gt;+1 (234) 567-89-10&amp;lt;/a&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Начнём с того, что BlackBerry и Safari, сами ищёт что-то похожее на ссылки и пытаются их распарсить. Это не обязательный шаг, задумываться о его необходимости нужно в каждом конкретном случае, но я хочу контролировать происходящее, поэтому выключу автоматический поиск ссылок:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;meta name=&quot;format-detection&quot; content=&quot;telephone=no&quot;&amp;gt; &amp;lt;!-- Safari --&amp;gt;
+&amp;lt;meta http-equiv=&quot;x-rim-auto-match&quot; content=&quot;none&quot;&amp;gt; &amp;lt;!-- BlackBerry --&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Дальше внимательно посмотрим на адрес. Нужно явно указать, что это телефонный номер, и соблюсти формат, понятный браузеру.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;!-- Это может выглядеть так: --&amp;gt;
+&amp;lt;a href=&quot;tel:12345678910&quot;&amp;gt;+1 (234) 567-89-10&amp;lt;/a&amp;gt;
+
+&amp;lt;!-- Или так: --&amp;gt;
+&amp;lt;a href=&quot;tel:1-234-567-8910&quot;&amp;gt;+1 (234) 567-89-10&amp;lt;/a&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Самое время подумать о доступности, и добавить ссылке атрибут &lt;code&gt;aria-label&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;a href=&quot;tel:1-234-567-8910&quot; aria-label=&quot;Телефон поддержки&quot;&amp;gt;+1 (234) 567-89-10&amp;lt;/a&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;И, наконец, посмотрим на аттрибут &lt;code&gt;target&lt;/code&gt;. Ссылка на телефонный номер только инициирует набор номера и нет необходимости открывать ссылку в другой вкладке. Правда, если у вас всё же есть веские основания сделать это, то не забывайте про безопасность и производительность (&lt;a href=&quot;https://github.com/andrew--r/ui-developer-tips/tree/master/tips/001-target-blank&quot;&gt;подробнее&lt;/a&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;a href=&quot;tel:1-234-567-8910&quot; aria-label=&quot;Телефон поддержки&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&amp;gt;+1 (234) 567-89-10&amp;lt;/a&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ссылка в таком формате будет правильно отображаться во всех популярных браузерах. Бинго!&lt;/p&gt;</content><author><name>Николай Говоров</name></author><summary type="html">Зашёл я тут давече на очередной сайт госструктур, и понадобилось мне позвонить по указанному там номеру. Номер ссылочкой, всё по феншую. Как любой здоровый верстальщик я ожидал что ссылку можно кликать, что собственно тут же и сделал. Проблема в том, что мои ожидания не оправдались и я увидел сообщение о 404 ошибке.</summary></entry><entry><title type="html">Приправляем наши web проекты Rust’ом</title><link href="https://govorov.online/notes/introduction-to-rust.html" rel="alternate" type="text/html" title="Приправляем наши web проекты Rust'ом" /><published>2017-10-02T00:00:00+00:00</published><updated>2017-10-02T00:00:00+00:00</updated><id>https://govorov.online/notes/introduction-to-rust</id><content type="html" xml:base="https://govorov.online/notes/introduction-to-rust.html">&lt;p&gt;Это вводная статья в язык Rust, призванная разобраться нужен ли он вам, и чем он может быть полезен в веб разработке.&lt;/p&gt;
+
+&lt;p&gt;Наверняка ты сталкивался с ситуацией, когда приложение выросло, а производительность упала. Может быть у тебя есть сложные алгоритмы надолго блокирующие поток и требующие много процессорного времени. Ты тратишь силы, но проведённые оптимизации не дают ощутимого результата (особенно если у тебя node).&lt;/p&gt;
+
+&lt;p&gt;Иногда случается что web-приложению внезапно потребовался доступ к низкоуровневому API системы (например, для dashboard’а с нестандартными метриками системы). Особняком стоит проблема многопоточности. Python и Ruby готовят её плохо, NodeJS не готовит вовсе. А порой хочется.&lt;/p&gt;
+
+&lt;p&gt;Важное требование в том, что мы не хотим переписывать весь проект. Мы лишь хотим ускорить узкие места. Самым логичным решением кажется &lt;strong&gt;вынести тяжёлую логику в нативные модули&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Прежде чем бежать и нанимать С++ разработчика, я прошу тебя остановиться и хорошенько подумать.&lt;/p&gt;
+
+&lt;p&gt;Мы привыкли, что С/C++ — must have системной разработки, но, чёрт возьми, давай посмотрим правде в глаза — писать на С++ больно. Мы постоянно стрелляем себе по ногам, валимся с ошибками памяти, пишем тысячи строк кода для очередного велосипеда, а про поддержку зависимостей вообще лучше не вспоминать. Помимо этого разработка кроссплатформенных и переносимых решений требует много лишних телодвижений.&lt;/p&gt;
+
+&lt;p&gt;Вебу нужен новый &lt;del&gt;геморрой&lt;/del&gt; герой!&lt;/p&gt;
+
+&lt;p&gt;В документации к Rust написано, что Rust — это системный язык программирования, внимание которого сосредоточено на трёх задачах: безопасность, скорость и параллелизм (&lt;a href=&quot;http://rurust.github.io/rust_book_ru/src/INTRODUCTION.html&quot;&gt;Подробнее&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;Важно отметить что Rust создавался в компании Mozilla как замена С++ для разработки ядра браузера Firefox.&lt;/p&gt;
+
+&lt;h3 id=&quot;что-необычного-может-rust&quot;&gt;Что необычного может Rust:&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Читаемый синтаксис&lt;/strong&gt;. Rust — язык программирования созданный для разработчиков. Код на нём действительно приятно читать. Например, так может выглядеть Hello Rust:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;fn main() {
+    println!(&quot;Hello Rust!&quot;);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Скорость&lt;/strong&gt;. Собственно, ради этого всё и затевалось. Rust чертвоски быстр, почти так же как и С++, и, само собой, в разы быстрее любого из скриптовых языков.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Развитый workflow&lt;/strong&gt;. Что удивительно, но удобство разработки и качество инструментов не уступает ни Python, ни Ruby, а о С++ даже речи не идёт. Пакетный менеджер &lt;a href=&quot;https://crates.io/&quot;&gt;Cargo&lt;/a&gt; берёт на себя все вопросы с зависимостями и даже сборкой проектов. Создание нового проекта — одна команда &lt;code&gt;$ cargo new --bin my_app&lt;/code&gt;. Можно забыть про сложные Make-файлы, это всё сделано из коробки, просто нажимай &lt;code&gt;$ cargo build&lt;/code&gt; или &lt;code&gt;$ cargo build --release&lt;/code&gt;. Иными словами, в нашем распоряжении есть всё что нужно: пакетные менеджеры, сборщики, готовые модули для типичных задач.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Продуманное тестирование&lt;/strong&gt;. В самом простом случае, тест в Rust — это функция, аннотированная атрибутом test:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;#[test]
+fn it_works() {
+    assert!(true);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Это смотрится просто очевидно и поставляется из коробки. Можете забыть про многочасовую настройку фреймворков для тестирования. Как можно было догадаться, запускать тесты можно одной командой &lt;code&gt;$ cargo test&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Многопоточность&lt;/strong&gt;. Это пожалуй основная киллер-фича Rust и одна из целей его создания. Многопточность, с защитой от гонки данных делается в несколько строк:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-rust&quot;&gt;use std::thread;
+
+fn process() {
+    let handles: Vec&amp;lt;_&amp;gt; = (0..10).map(|_| {
+        thread::spawn(|| {
+            let mut x = 0;
+
+            for _ in 0..5_000_000 {
+                x += 1
+            }
+
+            x
+        })
+    }).collect();
+
+    for h in handles {
+        println!(&quot;Поток завершился со счётом={}&quot;,
+
+        h.join().map_err(|_| &quot;Не удалось соединиться с потоком!&quot;).unwrap());
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Более интересные примеры есть в &lt;a href=&quot;http://rurust.github.io/rust_book_ru/src/dining-philosophers.html&quot;&gt;Книге&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Переносимость и кроссплатформенность&lt;/strong&gt;. Об этом стоит сказать отдельно. Как уже было сказано, сборку берёт на себя Cargo. Он позволяет очень легко и стандартизированно собирать проекты в динамически библиотеки (.so или .dll), что бы потом подключать их в существующий код. Гарантируется что библиотека будет соблюдать стандарт &lt;a href=&quot;https://en.wikipedia.org/wiki/Foreign_function_interface&quot;&gt;FFI&lt;/a&gt;, а значит мы не завязаны на одной платформе и можем легко перенести биндинг из проекта на python, в проект на node или даже С++. Это ключевое преимущество перед нативными биндингами основанных на стандартах вроде &lt;a href=&quot;https://nodejs.org/api/addons.html#addons_n_api&quot;&gt;N-API&lt;/a&gt;. &lt;a href=&quot;http://rurust.github.io/rust_book_ru/src/rust-inside-other-languages.html&quot;&gt;Подробнее&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Web Assembler&lt;/strong&gt;. Да, так как Rust компилируемый язык без сборщика мусора, он может компилироваться в wasm и эффективно использоваться на клиенте.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Документация&lt;/strong&gt;. Это стоит вынести в отдельное преимущество. У языка отличная, хорошо структурированная документация. Много инфомации переведено на русский язык.&lt;/p&gt;
+
+&lt;p&gt;Язык Rust всё ещё находится на стадии активной разработки, но уже сейчас может помочь в разработке сложных высоконагруженных приложений.&lt;/p&gt;
+
+&lt;p&gt;На этом всё. Я надёюсь что пробудил у вас желание ближе познакомиться с этим языком.&lt;/p&gt;
+
+&lt;h2 id=&quot;библиотека&quot;&gt;Библиотека:&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.rust-lang.org&quot;&gt;Официальный сайт Rust&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://rurust.github.io/rust_book_ru&quot;&gt;Перевод книги “The Rust Programming Language”&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://blog.risingstack.com/node-js-native-modules-with-rust/&quot;&gt;NodeJS native modules with Rust&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://medium.com/learning-rust/rust-lets-get-it-started-bdd8de58178d&quot;&gt;Rust lets get it started&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://habrahabr.ru/company/ruvds/blog/343568/?utm_source=twitter.com&amp;amp;utm_medium=social&amp;amp;utm_campaign=[perevod]-kak-rabotaet-js-osobennosti-i&quot;&gt;Как работает Web Assembler&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Николай Говоров</name></author><summary type="html">Это вводная статья в язык Rust, призванная разобраться нужен ли он вам, и чем он может быть полезен в веб разработке.</summary></entry></feed>
